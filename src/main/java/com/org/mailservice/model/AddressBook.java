@@ -1,10 +1,9 @@
 package com.org.mailservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,12 +12,18 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
+@Table(name = "AddressBook")
 public class AddressBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "user_id", nullable = false)
     private long user_id;
+
+    @Column(name = "name", nullable = false)
     private String name;
-    private String email_addresses;
+
+    @Column(name = "email_addresses", nullable = false)
+    private List<String> email_addresses;
 }

@@ -1,9 +1,6 @@
 package com.org.mailservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -13,13 +10,19 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto create id for primary id
     private long id;
 
+    @Column(name = "user_name", unique = true)
     private String user_name;
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "email", unique = true)
     private String email;
 
 }

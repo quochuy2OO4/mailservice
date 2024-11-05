@@ -34,7 +34,7 @@ CREATE TABLE `AddressBook` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `user_id` BIGINT UNSIGNED NOT NULL,
     `name` VARCHAR(255) NOT NULL,
-    `email_addresses` JSON NOT NULL
+    `email_addresses` VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE `MailDelivery` (
