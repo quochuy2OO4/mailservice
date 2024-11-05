@@ -1,0 +1,24 @@
+services:
+  mariadb:
+    image: mariadb:noble
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+    ports:
+      - "3311:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:apache
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8091:80"
+    depends_on:
+      - mariadb
