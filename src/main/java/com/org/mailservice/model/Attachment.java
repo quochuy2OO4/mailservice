@@ -10,21 +10,22 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "Attachment")
+@Table(name = "attachment")
 public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "mail_id", nullable = false)
-    private long mail_id;
+    @ManyToOne
+    @JoinColumn(name = "mail_id", nullable = false)
+    private Mail mail;
 
-    @Column(name = "file_name", nullable = false)
-    private String file_name;
+    @Column(nullable = false)
+    private String filePath;
 
-    @Column(name = "file_path", nullable = false)
-    private String file_path;
+    @Column(nullable = false)
+    private String fileName;
 
-    @Column(name = "file_size", nullable = false)
-    private long file_size;
+    @Column(nullable = false)
+    private Long fileSize;
 }

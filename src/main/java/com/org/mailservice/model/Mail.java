@@ -12,27 +12,28 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "Mail")
+@Table(name = "mail")
 public class Mail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "from_user_id", nullable = false)
-    private long from_user_id;
+    @ManyToOne
+    @JoinColumn(name = "from_user_id", nullable = false)
+    private User fromUser;
 
-    @Column(name = "subject", nullable = false)
+    @Column(nullable = false)
     private String subject;
 
-    @Column(name = "body", nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String body;
 
-    @Column(name = "priority", nullable = false)
-    private byte priority;
+    @Column(nullable = false)
+    private Byte priority;
 
-    @Column(name = "date_time", nullable = false)
-    private LocalDateTime date_time;
+    @Column(nullable = false)
+    private LocalDateTime dateTime;
 
-    @Column(name = "status", nullable = false)
-    private byte status;
+    @Column(nullable = false)
+    private Byte status;
 }

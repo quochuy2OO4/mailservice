@@ -14,11 +14,7 @@ public class UserService {
 
     // Retrieve all users
     public List<User> getAllUsers() {
-        List<User> listUser = userRepository.findAll();
-        if (listUser.isEmpty()) {
-            throw new RuntimeException("User empty");
-        }
-        return listUser;
+        return userRepository.findAll();
     }
 
     // Add a single user
@@ -28,30 +24,22 @@ public class UserService {
 
     // Find user by id
     public User getUserById(long id) {
-
         return userRepository.findById(id).orElse(null);
+    }
+
+    // Find user by username
+    public User getUserByUserName(String userName) {
+        return userRepository.getByUserName(userName);
     }
 
     // Delete user with user id
     public void deleteUser(long id) {
-        if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found");
-        }
         userRepository.deleteById(id);
     }
 
     // update user
     public User updateUser(long id, User user) {
-        User existingUser = userRepository.findById(id).orElse(null);
-
-        if (existingUser == null) {
-            throw new RuntimeException("User not found");
-        }
-
-        existingUser.setEmail(user.getEmail());
-        existingUser.setPassword(user.getPassword());
-
-        return userRepository.save(existingUser);
+        return userRepository.save(user);
     }
 
 }

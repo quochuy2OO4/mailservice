@@ -10,19 +10,19 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto create id for primary id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "user_name", unique = true)
-    private String user_name;
+    @Column(name = "user_name", unique = true, nullable = false)
+    private String userName;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
 }

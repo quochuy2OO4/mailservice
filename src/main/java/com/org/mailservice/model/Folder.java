@@ -10,15 +10,16 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "Folder")
+@Table(name = "folder")
 public class Folder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
 }

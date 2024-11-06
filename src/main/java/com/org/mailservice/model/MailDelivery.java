@@ -10,27 +10,30 @@ import lombok.*;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "MailDelivery")
+@Table(name = "mail_delivery")
 public class MailDelivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "mail_id", nullable = false)
-    private long mail_id;
+    @ManyToOne
+    @JoinColumn(name = "mail_id", nullable = false)
+    private Mail mail;
 
-    @Column(name = "to_user_id", nullable = false)
-    private long to_user_id;
+    @ManyToOne
+    @JoinColumn(name = "to_user_id", nullable = false)
+    private User toUser;
 
-    @Column(name = "folder_id")
-    private long folder_id;
+    @ManyToOne
+    @JoinColumn(name = "folder_id", nullable = true)
+    private Folder folder;
 
-    @Column(name = "is_read", nullable = false)
-    private boolean is_read = false;
+    @Column(nullable = false)
+    private Boolean isRead = false;
 
-    @Column(name = "is_flag", nullable = false)
-    private boolean is_flag;
+    @Column(nullable = false)
+    private Boolean isFlag = false;
 
-    @Column(name = "is_trash", nullable = false)
-    private boolean is_trash;
+    @Column(nullable = false)
+    private Boolean isTrash = false;
 }
